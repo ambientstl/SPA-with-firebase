@@ -3,7 +3,6 @@ import * as state from "./store";
 import Navigo from "navigo";
 import { capitalize } from "lodash";
 import axios from "axios";
-<<<<<<< HEAD
 import "./env";
 import { auth, db } from "./firebase";
 
@@ -11,11 +10,6 @@ const coll = db.collection("doggoPics");
 
 // ROUTER //
 const router = new Navigo(window.location.origin);
-=======
-
-const router = new Navigo(window.location.origin);
-
->>>>>>> 3436759024b5000326cd01466737e8c142168cdf
 router
   .on({
     ":page": params => render(state[capitalize(params.page)]),
@@ -23,32 +17,20 @@ router
   })
   .resolve();
 
-<<<<<<< HEAD
 // API CALLS //
 // get blog posts from json placeholder API
 axios
   .get("https://jsonplaceholder.typicode.com/posts")
   .then(response => {
-=======
-axios
-  .get("https://jsonplaceholder.typicode.com/posts")
-  .then(response => {
-    console.log("response.data", response.data);
->>>>>>> 3436759024b5000326cd01466737e8c142168cdf
     response.data.forEach(post => {
       state.Blog.posts.push(post);
     });
     const params = router.lastRouteResolved().params;
-<<<<<<< HEAD
-=======
-    console.log(params);
->>>>>>> 3436759024b5000326cd01466737e8c142168cdf
     if (params) {
       render(state[params.page]);
     }
   })
   .catch(err => console.log(err));
-<<<<<<< HEAD
 
 // get current St. Louis weather from open weather map API
 axios
@@ -71,8 +53,6 @@ axios
 //     }
 //   })
 //   .then(response => console.log(response.data));
-=======
->>>>>>> 3436759024b5000326cd01466737e8c142168cdf
 
 function render(st = state.Home) {
   // console.log("rendering state", st);
@@ -85,16 +65,12 @@ function render(st = state.Home) {
 `;
 
   router.updatePageLinks();
-<<<<<<< HEAD
   addSiteListeners(st);
 }
 
 function addSiteListeners(st) {
   addLogInAndOutListener(state.User);
   listenForAuthChange();
-=======
-
->>>>>>> 3436759024b5000326cd01466737e8c142168cdf
   addNavEventListeners();
   listenForRegister(st);
   listenForSignIn(st);
@@ -149,14 +125,11 @@ function resetUserInState() {
   state.User.loggedIn = false;
 }
 
-<<<<<<< HEAD
 function listenForAuthChange() {
   // log user object from auth if a user is signed in
   auth.onAuthStateChanged(user => (user ? console.log(user) : ""));
 }
 
-=======
->>>>>>> 3436759024b5000326cd01466737e8c142168cdf
 function addNavEventListeners() {
   // add menu toggle to bars icon in nav bar
   document

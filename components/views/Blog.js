@@ -1,10 +1,6 @@
 import { capitalize } from "lodash";
 
 export default st => {
-<<<<<<< HEAD
-=======
-  console.log("piece of state", st);
->>>>>>> 3436759024b5000326cd01466737e8c142168cdf
   return `
 <section id="blog">
   ${st.posts.map(post => formatBlogPost(post)).join("")}
