@@ -77,6 +77,15 @@ function addSiteListeners(st) {
   getDoggoPics(st);
   addPicOnFormSubmit(st);
   removePic(st);
+  hideNavOnAnon(st.User);
+}
+
+function hideNavOnAnon(st) {
+  if (!st.loggedIn) {
+    document
+      .querySelectorAll("nav li")
+      .forEach(li => li.classList.add("hidden-anon"));
+  }
 }
 
 // FUNCTIONS & EVENT LISTENERS
@@ -156,8 +165,8 @@ function listenForRegister(st) {
       //create user in Firebase
       auth.createUserWithEmailAndPassword(email, password).then(response => {
         console.log("user registered");
-        console.log(response);
-        console.log(response.user);
+        console.log("response", response);
+        console.log("response.user", response.user);
         addUserToStateAndDb(firstName, lastName, email, password);
         render(state.Home);
       });
